@@ -1,0 +1,53 @@
+{
+  "name": "gulp-makdoc",
+  "version": "0.1.0",
+  "description": "A task-based static site generator",
+  "homepage": "https://github.com/pismute/gulp-makdoc",
+  "author": {
+    "name": "Changwoo Park",
+    "email": "pismute@gmail.com",
+    "url": "https://pismute.github.com/"
+  },
+  "repository": "pismute/gulp-makdoc",
+  "license": "MIT",
+  "main": "./index",
+  "keywords": [
+    "gulp",
+    "task",
+    "static",
+    "generator",
+    "handlebars",
+    "dashbars"
+  ],
+  "dependencies": {},
+  "peerDependencies": {
+    "dashbars": "*",
+    "del": "*",
+    "gulp": "*",
+    "gulp-autoprefixer": "*",
+    "gulp-cache": "*",
+    "gulp-cached": "*",
+    "gulp-connect": "*",
+    "gulp-filter": "*",
+    "gulp-handlebars": "*",
+    "gulp-imagemin": "*",
+    "gulp-jshint": "*",
+    "gulp-less": "*",
+    "gulp-load-plugins": "*",
+    "gulp-markdown": "*",
+    "gulp-open": "*",
+    "gulp-rename": "*",
+    "gulp-sass": "*",
+    "gulp-size": "*",
+    "gulp-using": "*",
+    "gulp-util": "*",
+    "handlebars": "^2.0.0",
+    "lodash": "*",
+    "pygmentize-bundled": "*",
+    "run-sequence": "*",
+    "through2": "*"
+  },
+  "scripts": {
+    "test": "gulp test"
+  }
+}

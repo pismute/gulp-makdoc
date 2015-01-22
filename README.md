@@ -48,9 +48,10 @@ $ gulp watch
 │   ├── partials/
 │   │   └── **/*.hbs
 │   └── root/
-│       ├── **/*.html.md   // markdown to html
-│       ├── **/*.xml.hbs   // handlebars to xml
-│       └── **/*.html.hbs  // handlebars to html
+│       ├── **/*.html.md   // docs, markdown to html
+│       ├── docs/**/*.html.hbs // docs, handlebars to html
+│       ├── **/*.xml.hbs   // template, handlebars to xml
+│       └── **/*.html.hbs  // template, handlebars to html
 └── dist/ //target directory
 ```
 
@@ -66,7 +67,8 @@ gulp.task('makdoc:init:after', function(done){
 
     var vars = require('gulp-makdoc').vars;
 
-    vars.MARKDOWNS= returns('app/root/**/*.md');
+    vars.DOCS_MARKDOWNS= returns('app/root/**/*.md');
+    vars.DOCS_HANDLEBARS= returns('app/root/docs/**/*.hbs');
     vars.TEMPLATES= returns('app/root/**/*.hbs');
     vars.PARTIALS= returns('app/partials/**/*.hbs');
     vars.LAYOUTS= returns('app/layouts/**/*.hbs');

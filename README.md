@@ -67,15 +67,15 @@ gulp.task('makdoc:init:after', function(done){
 
     var vars = require('gulp-makdoc').vars;
 
-    vars.DOCS_MARKDOWNS= returns('app/root/**/*.md');
-    vars.DOCS_HANDLEBARS= returns('app/root/docs/**/*.hbs');
+    vars.DOCS_MARKDOWNS= returns('app/docs/**/*.md');
+    vars.DOCS_HANDLEBARS= returns('app/docs/**/*.hbs');
     vars.TEMPLATES= returns('app/root/**/*.hbs');
     vars.PARTIALS= returns('app/partials/**/*.hbs');
     vars.LAYOUTS= returns('app/layouts/**/*.hbs');
     vars.IMAGES= returns('app/root/**/*.{ico,jpg,jpeg,png,gif}');
     vars.SOLIDS= returns('app/root/**/*.{html}');
     vars.STYLES= returns('app/root/**/*.{css,scss,less}');
-    vars.SCRIPTS= returns('app/root/**/*.{js}');
+    vars.SCRIPTS= returns('app/root/**/*.js');
     vars.DIST= returns('dist/');
     vars.BASE_URL= returns('http://myhost/');
     vars.WATCH_PORT= returns(9000);

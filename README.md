@@ -47,9 +47,10 @@ $ gulp watch
 │   │   └── **/*.hbs
 │   ├── partials/
 │   │   └── **/*.hbs
+│   ├── docs/
+│   │   └── **/*.html.md   // docs, markdown to html
+│   │   └── **/*.html.hbs // docs, handlebars to html
 │   └── root/
-│       ├── **/*.html.md   // docs, markdown to html
-│       ├── docs/**/*.html.hbs // docs, handlebars to html
 │       ├── **/*.xml.hbs   // template, handlebars to xml
 │       └── **/*.html.hbs  // template, handlebars to html
 └── dist/ //target directory
@@ -67,18 +68,20 @@ gulp.task('makdoc:init:after', function(done){
 
     var vars = require('gulp-makdoc').vars;
 
-    vars.DOCS_MARKDOWNS= returns('app/docs/**/*.md');
-    vars.DOCS_HANDLEBARS= returns('app/docs/**/*.hbs');
-    vars.TEMPLATES= returns('app/root/**/*.hbs');
-    vars.PARTIALS= returns('app/partials/**/*.hbs');
-    vars.LAYOUTS= returns('app/layouts/**/*.hbs');
-    vars.IMAGES= returns('app/root/**/*.{ico,jpg,jpeg,png,gif}');
-    vars.SOLIDS= returns('app/root/**/*.{html}');
-    vars.STYLES= returns('app/root/**/*.{css,scss,less}');
-    vars.SCRIPTS= returns('app/root/**/*.js');
-    vars.DIST= returns('dist/');
-    vars.BASE_URL= returns('http://myhost/');
-    vars.WATCH_PORT= returns(9000);
+    var.DOCS = returns('app/docs/**/*.{md,hbs}');
+    var.TEMPLATES = returns(['app/root/**/*.hbs']);
+    var.PARTIALS = returns('app/partials/**/*.hbs');
+    var.LAYOUTS = returns('app/layouts/**/*.hbs');
+    var.IMAGES = returns([
+        'app/root/**/*.{ico,jpg,jpeg,png,gif}',
+        'app/docs/**/*.{ico,jpg,jpeg,png,gif}']);
+    var.SOLIDS = returns([
+        'app/root/**/*.html',
+        'app/docs/**/*.{html,css,scss,less,js}']);
+    var.STYLES = returns('app/root/**/*.{css,scss,less}');
+    var.SCRIPTS = returns('app/root/**/*.js');
+    var.DIST = returns('dist/');
+    var.BASE_URL = returns('http://localhost/');
 
     done();
 });

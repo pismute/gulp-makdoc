@@ -29,7 +29,6 @@
     "gulp-cached": "*",
     "gulp-connect": "*",
     "gulp-filter": "*",
-    "gulp-handlebars": "*",
     "gulp-imagemin": "*",
     "gulp-jshint": "*",
     "gulp-less": "*",

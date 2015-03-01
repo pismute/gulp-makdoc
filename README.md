@@ -1,6 +1,6 @@
 #  [![NPM version][npm-image]][npm-url] [![Dependency Status][daviddm-url]][daviddm-image]
 
-> A task-based document generator.
+> A task library for generating documents
 
 ## Install & Usage
 
@@ -18,7 +18,7 @@ Require once anywhere:
 var makdoc = require('gulp-makdoc');
 ```
 
-`gulp-makdoc` has only peer dependancies so that you should check your depencancies.
+`gulp-makdoc` has only peer dependencies so that you should check your dependencies.
 
 Build:
 
@@ -56,7 +56,7 @@ $ gulp watch
 └── dist/ //target directory
 ```
 
-You can change directory layouts. Overide `makdoc:init:after` task.
+You can change directory layouts. Override `makdoc:init:after` task.
 
 ```
 gulp.task('makdoc:init:after', function(done){

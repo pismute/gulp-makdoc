@@ -75,9 +75,6 @@ gulp.task('makdoc:init:after', function(done){
     var.IMAGES = returns([
         'app/root/**/*.{ico,jpg,jpeg,png,gif}',
         'app/docs/**/*.{ico,jpg,jpeg,png,gif}']);
-    var.SOLIDS = returns([
-        'app/root/**/*.html',
-        'app/docs/**/*.{html,css,scss,less,js}']);
     var.STYLES = returns('app/root/**/*.{css,scss,less}');
     var.SCRIPTS = returns('app/root/**/*.js');
     var.DIST = returns('dist/');

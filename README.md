@@ -14,7 +14,7 @@ $ npm install --save-dev gulp-makdoc
 
 Require once anywhere:
 
-```
+```js
 var makdoc = require('gulp-makdoc');
 ```
 
@@ -22,19 +22,19 @@ var makdoc = require('gulp-makdoc');
 
 Build:
 
-```
+```sh
 $ gulp
 ```
 
 Server:
 
-```
+```sh
 $ gulp server
 ```
 
 Watch:
 
-```
+```sh
 $ gulp watch
 ````
 
@@ -58,7 +58,7 @@ $ gulp watch
 
 You can change directory layouts. Override `makdoc:init:after` task.
 
-```
+```js
 gulp.task('makdoc:init:after', function(done){
     var returns = function(v) {
         return function(){
@@ -83,6 +83,45 @@ gulp.task('makdoc:init:after', function(done){
     done();
 });
 ```
+
+## Deploy
+
+You can define `deploy` task to easily deploy your documents:
+
+```js
+gulp.task('deploy', ['makdoc'], function () {
+    ...
+});
+```
+
+Before documents are deploying, 'makdoc' task that build your documents should run. Make your documents fresh when you deploy
+
+### GitHub
+
+Using [gulp-gh-pages][], You can easily deploy your site on GitHub page. Just install:
+
+```sh
+$ npm install --save-dev gulp-gh-pages
+```
+
+As an usage for `gulp-gh-pages`:
+
+```js
+gulp.task('deploy', ['makdoc'], function () {
+    var deploy = require('gulp-gh-pages');
+    var path = require('path');
+
+    return gulp.src(path.join($.makdoc.vars.DIST(),'**/*'))
+        .pipe(deploy({
+            remoteUrl: 'git@github.com:pismute/pismute.github.io.git',
+            cacheDir: '.gh-pages',
+            branch:'master'
+        }));
+});
+```
+
+[gulp-gh-pages]: https://github.com/shinnn/gulp-gh-pages
+
 
 ## License
 

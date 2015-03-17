@@ -120,8 +120,80 @@ gulp.task('deploy', ['makdoc'], function () {
 });
 ```
 
-[gulp-gh-pages]: https://github.com/shinnn/gulp-gh-pages
+## Tasks
 
+Tasks are like LEGO bricks for generating documents. You can just use because Makdoc has lots of combination tasks.
+
+you can override some tasks if you want to change it differently:
+
+```js
+//after require('gulp-makdoc')
+gulp.task('makdoc:task', function(){
+    //...
+});
+```
+
+Some tasks like `server`, `watch`, `default`, `clean` is just a task that run other tasks in order or parallel. Therefore, you can override the behavior of Makdoc as complete as you want.
+
+### For user
+
+Tasks lead you to get easy:
+
+- `default`: Just alias of 'makdoc'
+- `makdoc`: Build your documents.
+    1. 'makdoc:init'
+    2. 'makdoc:start'
+- `clean`: Clean all generated files and optimized-image caches.
+    1. 'makdoc:init'
+    2. ['makdoc:clean', 'makdoc:clear']
+- `server`: Build and run server
+    1. 'makdoc:init'
+    2. 'makdoc:server'
+    3. 'makdoc:start'
+    4. 'makdoc:open'
+- `watch`: Build and run and watch for live-reload
+    1. 'makdoc:init'
+    2. 'makdoc:server'
+    3. ['makdoc:start', 'makdoc:watch']
+    4. 'makdoc:open'
+- `makdoc:init:after`: An empty task to override that Makdoc will run it after initialized
+- `makdoc:done:after`: An empty task to override that Makdoc will run it after all done
+
+### For internal
+
+- `makdoc:start`: Start makdoc process
+    1. 'makdoc:prerequisite
+    2. 'makdoc:clean'
+    3. ['makdoc:resources', 'makdoc:build']
+    4. 'makdoc:done:after'
+- `makdoc:clean`: Clean files built from Makdoc.
+- `makdoc:clear`: Clear caches of [gulp-cache][], which of optimized images
+- `makdoc:build`: Build documents like Handlebars or Markdown
+    1. ['makdoc:partials', 'makdoc:layouts']
+    2. 'makdoc:docs'
+    3. 'makdoc:templates'
+- `makdoc:prerequisite`: Check condition.
+- `makdoc:init`: Initialize Makdoc
+    - 'makdoc:init:after'
+- `makdoc:partials`: Load partial Helpers for Handlebars.
+- `makdoc:layouts`: Load layouts that are Handlebars templates for decorating documents.
+- `makdoc:templates`: Build handlebars templates(var.TEMPLATES()).
+- `makdoc:docs`: Build var.DOCS().
+- `makdoc:resources`: Build and copy resources without templates
+    - 'makdoc:solid'
+    - 'makdoc:images'
+    - 'makdoc:styles'
+    - 'makdoc:scripts'
+- `makdoc:solid`: Copy files to dist directory.
+- `makdoc:images`: Optimize and Copy images(var.IMAGES()) to dist directory.
+- `makdoc:styles`: Build and Copy style files(var.STYLES()) to dist directory.
+- `makdoc:scripts`: Build script files to dist directory.
+- `makdoc:watch`: Watch files to run tasks
+- `makdoc:open`: Open browser to walk your documents
+- `makdoc:server`: Run server with live-reload.
+
+[gulp-gh-pages]: https://github.com/shinnn/gulp-gh-pages
+[gulp-cache]: https://github.com/jgable/gulp-cache
 
 ## License
 

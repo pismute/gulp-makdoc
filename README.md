@@ -120,9 +120,94 @@ gulp.task('deploy', ['makdoc'], function () {
 });
 ```
 
+## Model
+
+Makdoc don't use such [YAML front matter][front-matter]. so we can write with any editor and format. you can write your documents in a editor like `vim` or `emacs`, And then build them using Makdoc to push on your website , or then print them to your printer or pdf file using your own tool like [Haroopad][] without touch.
+
+[front-matter]: http://jekyllrb.com/docs/frontmatter/
+[Haroopad]: http://pad.haroopress.com/
+
+Instead, Makdoc use `model.json` file. If the file name of your document is `path/to/my-doc.html.md` then make anther file of which the name is `path/to/my-doc.html.md.json`. Makdoc will load and merge it to the document model.
+
+Makdoc inject model in three way:
+
+1. Default model: Hard-coded model in Makdoc
+2. Document's `title` and `description`: Makdoc parse them from document's content
+3. User model: `path/to/xxxx.json` file.
+
+### Default Model
+
+Makdoc has four type components of documents:
+
+- Partials: `.hbs` templates that are partial documents in other `.hbs` documents.
+- Layouts: `.hbs` templates that contain other document.
+- Documents: `.md` and `.hbs`, etc documents that are writings. Makdoc will decorate with Layouts
+- Templates: `.hbs` templates which is like `index.html` and `atom.xml`, `sitemap.xml`, etc. Makdoc will decorate with Layouts
+
+Makdoc initializes different model for each type as default.
+
+#### Layouts, Partials
+
+Layouts and Partials has no a default model:
+
+```
+{}
+```
+
+#### Templates
+
+The default model of templates is simple:
+
+```
+{
+    title: '',
+    date: new Date(),
+    description: '',
+    layout: 'default'
+    keywords: []
+}
+```
+
+#### Documents
+
+Every document has 'untitled' title and 'documents' layout and now as date. Makdoc will sort documents in `docs` variable by date descending:
+
+```
+{
+    title: 'untitled',
+    date: new Date(),
+    description: '',
+    layout: 'documents'
+    keywords: []
+}
+```
+
+### Model for SEO
+
+`title`, `description` and `keywords` are useful for SEO. You can use it in your templates or layouts:
+
+```html
+<title>{{{title}}}</title>
+<meta name="description"
+    content="{{{description}}}"></meta>
+<meta name="keywords"
+    content="{{{-join keywords ','}}}"></meta>
+```
+
+#### Documents
+
+Makdoc inject the title and description of documents from rendered content(html) to model. The title is a striped-string  from first line(newline ended, not `<br>`), and the description is a striped-string from the second or third non-empty(after striped and trimmed) line(it use the third line when the second line is empty):
+
+```
+<h1> This is title</h1>
+
+<p>This is description and
+this is not description</p>
+```
+
 ## Tasks
 
-Tasks are like LEGO bricks for generating documents. You can just use because Makdoc has lots of combination tasks.
+Makdoc tasks are like LEGO bricks for generating documents. You can just use because Makdoc has lots of combination tasks.
 
 you can override some tasks if you want to change it differently:
 

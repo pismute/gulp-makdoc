@@ -104,7 +104,7 @@ Using [gulp-gh-pages][], You can easily deploy your site on GitHub page. Just in
 $ npm install --save-dev gulp-gh-pages
 ```
 
-As an usage for `gulp-gh-pages`:
+As a usage for `gulp-gh-pages`:
 
 ```js
 gulp.task('deploy', ['makdoc'], function () {
@@ -122,7 +122,7 @@ gulp.task('deploy', ['makdoc'], function () {
 
 ## Model
 
-Makdoc don't use such [YAML front matter][front-matter]. so we can write with any editor and format. you can write your documents in a editor like `vim` or `emacs`, And then build them using Makdoc to push on your website , or then print them to your printer or pdf file using your own tool like [Haroopad][] without touch.
+Makdoc do not use such [YAML front matter][front-matter]. so we can write with any editor and format. you can write your documents in an editor like `vim` or `emacs`, And then build them using Makdoc to push on your website , or then print them to your printer or pdf file using your own tool like [Haroopad][] without touch.
 
 [front-matter]: http://jekyllrb.com/docs/frontmatter/
 [Haroopad]: http://pad.haroopress.com/
@@ -141,8 +141,8 @@ Makdoc has four type components of documents:
 
 - Partials: `.hbs` templates that are partial documents in other `.hbs` documents.
 - Layouts: `.hbs` templates that contain other document.
-- Documents: `.md` and `.hbs`, etc documents that are writings. Makdoc will decorate with Layouts
-- Templates: `.hbs` templates which is like `index.html` and `atom.xml`, `sitemap.xml`, etc. Makdoc will decorate with Layouts
+- Documents: `.md`, `.hbs`, and else documents that you write. Makdoc will decorate documents with Layouts, after Makdoc build them.
+- Templates: `.hbs` templates which is like `index.html`, `atom.xml`, `sitemap.xml`, and so on. Makdoc will decorate with Layouts
 
 Makdoc initializes different model for each type as default.
 
@@ -196,7 +196,7 @@ Every document has 'untitled' title and 'documents' layout and now as date. Makd
 
 #### Documents
 
-Makdoc inject the title and description of documents from rendered content(html) to model. The title is a striped-string  from first line(newline ended, not `<br>`), and the description is a striped-string from the second or third non-empty(after striped and trimmed) line(it use the third line when the second line is empty):
+Makdoc inject the title and description of documents from rendered content(html) to model. The title is a striped-string  from first line(newline ended, not `<br>`), and the description is a striped-string from the second or third nonempty(after striped and trimmed) line(it use the third line when the second line is empty):
 
 ```
 <h1> This is title</h1>

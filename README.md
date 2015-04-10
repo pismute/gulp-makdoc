@@ -280,6 +280,13 @@ Tasks lead you to get easy:
 [gulp-gh-pages]: https://github.com/shinnn/gulp-gh-pages
 [gulp-cache]: https://github.com/jgable/gulp-cache
 
+## Links
+
+- A Blog from [@pismute](https://github.com/pismute/pismute.makdoc), Korean
+- A Blog from [@lethee](https://github.com/lethee/blog-by-makdoc), Korean
+- [Makdoc 소개](http://lethee.github.io/makdoc-first.html), Korean
+- [generator-makdoc-blog](https://github.com/lethee/generator-makdoc-blog): A Yeoman generator for blog
+
 ## License
 
 MIT © [Changwoo Park](https://pismute.github.io/)

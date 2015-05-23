@@ -31,5 +31,14 @@ gulp.task('publish', function(done){
 });
 
 gulp.task('npm', function (done) {
-    require("child_process").spawn('npm', ['publish'], { stdio: 'inherit' }).on('close', done);
+    require("child_process")
+    .spawn('npm', ['publish'], { stdio: 'inherit' })
+    .on('close', done);
+});
+
+gulp.task('bump', function(){
+    var _type = gulp.env.type || 'patch';
+    return gulp.src(['./package.json'])
+        .pipe($.bump({type:_type, indent: 4 }))
+        .pipe(gulp.dest('./'));
 });

@@ -129,11 +129,14 @@ Makdoc do not use such [YAML front matter][front-matter]. so we can write with a
 
 Instead, Makdoc use `model.json` file. If the file name of your document is `path/to/my-doc.html.md` then make anther file of which the name is `path/to/my-doc.html.md.json`. Makdoc will load and merge it to the document model.
 
-Makdoc inject model in three way:
+Here are model overriding order in some way:
 
 1. Default model: Hard-coded model in Makdoc
-2. Document's `title` and `description`: Makdoc parse them from document's content
-3. User model: `path/to/xxxx.json` file.
+2. Extract `title` and `description` from content
+3. Directory model(`path/to/.model.json`)'s default(*)
+4. Directory model(`path/to/.model.json`)'s Individual.
+5. File model: `path/to/xxxx.json` file.
+6. Finalize model
 
 ### Default Model
 
@@ -146,7 +149,7 @@ Makdoc has four type components of documents:
 
 Makdoc initializes different model for each type as default.
 
-#### Layouts, Partials
+##### Layouts, Partials
 
 Layouts and Partials has no a default model:
 
@@ -154,7 +157,7 @@ Layouts and Partials has no a default model:
 {}
 ```
 
-#### Templates
+##### Templates
 
 The default model of templates is simple:
 
@@ -168,7 +171,7 @@ The default model of templates is simple:
 }
 ```
 
-#### Documents
+##### Documents
 
 Every document has 'untitled' title and 'documents' layout and now as date. Makdoc will sort documents in `docs` variable by date descending:
 
@@ -182,19 +185,7 @@ Every document has 'untitled' title and 'documents' layout and now as date. Makd
 }
 ```
 
-### Model for SEO
-
-`title`, `description` and `keywords` are useful for SEO. You can use it in your templates or layouts:
-
-```html
-<title>{{{title}}}</title>
-<meta name="description"
-    content="{{{description}}}"></meta>
-<meta name="keywords"
-    content="{{{-join keywords ','}}}"></meta>
-```
-
-#### Documents
+### Extract `title` and `description` from content
 
 Makdoc inject the title and description of documents from rendered content(html) to model. The title is a striped-string  from first line(newline ended, not `<br>`), and the description is a striped-string from the second or third nonempty(after striped and trimmed) line(it use the third line when the second line is empty):
 
@@ -203,6 +194,52 @@ Makdoc inject the title and description of documents from rendered content(html)
 
 <p>This is description and
 this is not description</p>
+```
+
+### Directory Model
+
+An example represents layouts of directory and file models.
+
+```
+path/
+└── to/
+    ├── .model.json // A models for this directory, Directory model.
+    ├── document.html.md // A `.md` document
+    ├── document.html.md.json // A model for `.md` document, Document model
+    ├── document.html.hbs // A `.hbs` document
+    └── document.html.hbs.json // A model for `.hbs` document
+```
+
+`.model.json`:
+
+```
+{
+    `*`: //Directory Default Model
+    `document.html.md`: // Individual model.
+}
+```
+
+### File Model
+
+`path/to/document.html.md.json':
+
+```
+{
+    date: '2015-05-21',
+    keywords: ['new release', 'makdoc']
+}
+```
+
+### Model for SEO
+
+`title`, `description` and `keywords` of documents are useful for SEO. You can use it in your templates or layouts:
+
+```html
+<title>{{{title}}}</title>
+<meta name="description"
+    content="{{{description}}}"></meta>
+<meta name="keywords"
+    content="{{{-join keywords ','}}}"></meta>
 ```
 
 ## Tasks

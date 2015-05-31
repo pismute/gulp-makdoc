@@ -20,10 +20,9 @@ gulp.task('lint', function(){
 // Watch
 gulp.task('watch', ['default'], function(done){
 
-    seq('default',
-        done);
-
     gulp.watch(files, ['lint']);
+
+    done();
 });
 
 gulp.task('publish', function(done){

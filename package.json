@@ -46,6 +46,7 @@
     "gulp-less": "*",
     "gulp-open": "*",
     "gulp-sass": "*",
+    "gulp-babel": "*",
     "pygmentize-bundled": "*"
   },
   "scripts": {

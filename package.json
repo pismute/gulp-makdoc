@@ -48,7 +48,7 @@
     "gulp-sass": "*",
     "gulp-babel": "*",
     "gulp-sourcemaps": "*",
-    "pygmentize-bundled": "*"
+    "pygmentize-bundled-cached": "*"
   },
   "scripts": {
     "test": "gulp test"

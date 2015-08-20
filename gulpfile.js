@@ -12,7 +12,6 @@ var files = ['lib/**/*.js'];
 
 gulp.task('lint', function(){
     return gulp.src(files)
-        .pipe($.cached('lint'))
         .pipe($.jshint('.jshintrc'))
         .pipe($.jshint.reporter('default'));
 });

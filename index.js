@@ -1,6 +1,11 @@
 'use strict';
 
-require('./lib/tasks');
+function init(gulp, handlebars){
+    var makdoc = require('./lib/makdoc')(gulp, handlebars);
 
-module.exports = require('./lib/makdoc');
+    require('./lib/tasks')(gulp, handlebars, makdoc);
 
+    return makdoc;
+}
+
+module.exports = init

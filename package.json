@@ -1,6 +1,6 @@
 {
   "name": "gulp-makdoc",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A task library for generating documents",
   "homepage": "https://github.com/pismute/gulp-makdoc",
   "author": {

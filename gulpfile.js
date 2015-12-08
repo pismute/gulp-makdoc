@@ -40,3 +40,9 @@ gulp.task('bump', function(){
         .pipe($.bump({type:_type, indent: 4 }))
         .pipe(gulp.dest('./'));
 });
+
+// Test Tasks
+
+gulp.task('test', function (done) {
+    seq('lint', done);
+});

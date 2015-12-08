@@ -40,3 +40,13 @@ gulp.task('bump', function(){
         .pipe($.bump({type:_type, indent: 4 }))
         .pipe(gulp.dest('./'));
 });
+
+// Test Tasks
+
+gulp.task('test', function (done) {
+    seq('lint', 'test:makdoc', done);
+});
+
+gulp.task('test:makdoc', function (done) {
+    throw new Error('need to implement unittests');
+});
